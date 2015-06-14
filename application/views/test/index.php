@@ -1,7 +1,11 @@
+<?php
+if(isset($data)){
+    echo "Вас зовут: ".$data;
+}
+?>
 <center>
 <form action = "" method = "post">
-	<input type = "text" name = "User[username]" value="<?=$data?>"><br />
-	<input type = "password" name = "User[password]"><br />
+	<input type = "text" name = "name" value=""><br />
 
 	<input type = "submit" value = "Войти">
 </form>

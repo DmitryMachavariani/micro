@@ -1,10 +1,8 @@
 <?php
 class TestController extends Controller{
     public function index(){
-        $data = 1;
-
-        if(isset($_POST)){
-            $data = time();
+        if(isset($_POST['name'])){
+            $data = $_POST['name'];
         }
 
         $this->render('index', ['data'=>$data]);
