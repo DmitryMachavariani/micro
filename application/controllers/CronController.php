@@ -1,6 +1,7 @@
 <?php
+
 class CronController extends Controller{
-	public function index(){
-		echo time();
-	}
+    public function index(){
+
+    }
 }

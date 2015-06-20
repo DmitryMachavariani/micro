@@ -3,10 +3,6 @@
 class Controller{
     public static $default = 'test/index';
 
-    public function __contstuct(){
-        $this->run();
-    }
-
     public function run(){
         $controller = self::getController();
         $action = self::getAction();
@@ -37,6 +33,7 @@ class Controller{
         }
     }
 
+    //Доработать
     public function redirect($url = [], $param = []){
         header("Location: ".$url);
     }

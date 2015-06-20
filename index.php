@@ -24,7 +24,8 @@ define("framework", BASEPATH."/framework");
 
 define("url", "http://".$_SERVER["HTTP_HOST"].dirname($_SERVER['PHP_SELF'])."/");
 
-require(framework."/Sun.php");
+require_once(framework."/Sun.php");
+$config = app."/config/config.php";
 
 $app = new Sun;
-$app->start();
+$app->start($config);
