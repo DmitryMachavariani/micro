@@ -1,18 +1,19 @@
 <?php
 
-class DataBase{
+class DataBase extends Sun{
+    private $connect;
     private $username;
     private $password;
     private $encoding;
 
     protected $database;
 
+    private $result;
 
-    public function run($config){
+    public function __construct($config){
+        if(isset($config['connect'])) $this->connect = $config['connect'];
         if(isset($config['username'])) $this->username = $config['username'];
-
         if(isset($config['password'])) $this->password = $config['password'];
-
         if(isset($config['encoding'])) $this->encoding = $config['encoding'];
 
         $opt = array(
@@ -20,18 +21,21 @@ class DataBase{
         );
 
         try{
-            $this->database = new PDO($config['connect'], $this->username, $this->password, $opt);
+            $this->database = new PDO($this->connect, $this->username, $this->password, $opt);
         }catch(PDOException $e){
             die($e->getMessage());
         }
     }
 
-    public function command($command){
-        echo $command;
-//        try{
-//            $query = $this->database->query($command)->fetch();
-//        }catch(PDOException $e){
-//            die($e->getMessage());
-//        }
+    public function command($command, $params = NULL){
+        try{
+            $this->result = $this->database->query($command);
+        }catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function fetchAll(){
+        return $this->result->fetchAll();
     }
 }

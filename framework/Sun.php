@@ -16,26 +16,27 @@ class Sun{
         if(isset($config['components'])){
             foreach($config['components'] as $key => $value){
                 if(isset($value['class'])){
-                    $this->loadClass($value['class'], "/kernel/")->run($value);
-                    $this->components[$key] = $value['class'];
+                    $this->loadClass($value['class'], "/kernel/", $value);
+                    $this->components[$key] = $value;
                 }else{
                     die("Class param not found");
                 }
             }
         }
 
-        //Подгружаем главный класс контроллеры
+        //Подгружаем главный класс контроллера
         $this->loadClass("Controller", "/kernel/")->run();
     }
 
     public function get($name){
-        var_dump($this->components);
         if(array_key_exists($name, $this->components)){
-            $path = framework.'/kernel/'.$this->components[$name].'.php';
+            echo $this->components[$name]['class'];
+            $path = framework.'/kernel/'.$this->components[$name]['class'].'.php';
 
             if(file_exists($path)){
                 require_once($path);
-                return new $this->components[$name];
+                $classname = $this->components[$name]['class'];
+                return new $classname($this->components[$name]);
             }
         }
     }
@@ -50,7 +51,7 @@ class Sun{
         if(self::$_app === null || $app === null) self::$_app = $app;
     }
 
-    public function loadClass($name, $dir = 'helpers'){
+    public function loadClass($name, $dir = 'helpers', $params = []){
         if(is_array($name)){
             foreach($name as $key => $value){
                 $path = framework.$dir."/".$value.".php";
@@ -61,7 +62,10 @@ class Sun{
             if(file_exists($path)) require($path);
         }
 
-        return new $name;
+        if(isset($params) && is_array($params))
+            return new $name($params);
+        else
+            return new $name;
     }
 
     public static function app(){
