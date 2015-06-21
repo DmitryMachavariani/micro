@@ -6,7 +6,9 @@ class TestController extends Controller{
             $data = $_POST['name'];
         }
 
-        Sun::app()->get("db")->command("SELECT * FROM tb_users")->fetchAll();
+        $result = Sun::app()->get("db")->command("SELECT * FROM tb_users")->fetchAll();
+
+        var_dump($result);
 
         $this->render('index', ['data' => $data]);
     }
