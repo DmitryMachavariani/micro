@@ -30,7 +30,6 @@ class Rain{
 
     public function get($name){
         if(array_key_exists($name, $this->components)){
-            echo $this->components[$name]['class'];
             $path = framework.'/kernel/'.$this->components[$name]['class'].'.php';
 
             if(file_exists($path)){

@@ -1,6 +1,5 @@
 <?php
 $config = [
-    'name'=>'My Demo App',
     'language'=>'ru',
     'charset'=>'utf-8',
     'components'=>[
@@ -10,6 +9,9 @@ $config = [
             'username'=>'root',
             'password'=>'1752dima',
             'charset'=>'utf8'
+        ],
+        'router'=>[
+            'class'=>'Router'
         ]
     ]
 ];

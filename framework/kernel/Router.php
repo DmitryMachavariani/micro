@@ -1,22 +1,23 @@
 <?php
-class Router{
-	public function getPost($key){
-		if(isset($_POST[$key])){
-			return $_POST[$key];
-		}
-	}
 
-	public function getQuery($key){
-		if(isset($_GET[$key])){
-			return $_GET[$key];
-		}
-	}
+class Router {
+    public function createUrl($to, $param = []) {
+        $tmp_data = explode('/', $to);
+        $url = NULL;
 
-	public function createUrl($data){
-		$tmp_data = explode('/', $data);
-		$to_query = array("d"=>$tmp_data);
-		$url = http_build_query($to_query);
+        if(count($param) == 0){
+            $url = url."index.php?d=".$tmp_data[0]."/".$tmp_data[1];
+        }else {
+            $to_query = array("d" => $tmp_data);
+//            $url = http_build_query($to_query);
 
-		echo $url;
-	}
+//            echo $url;
+        }
+
+        return $url;
+    }
+
+    public function redirect($url = [], $param = []){
+        header("Location: ".$url);
+    }
 }

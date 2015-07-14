@@ -13,7 +13,7 @@ class Controller{
         $controller->$action();
     }
 
-    public function render($file, $params = array()){
+    public function render($file, $params = []){
         $path = app."/views/".self::getController()."/".$file.".php";
         if(is_file($path) && file_exists($path)){
             ob_start();
@@ -25,17 +25,12 @@ class Controller{
         }
     }
 
-    public function renderFile($file, $params = array()){
+    public function renderFile($file, $params = []){
         $path = app."/views/".self::getController().$file.".php";
         if(is_file($path) && file_exists($path)){
             extract($params, EXTR_OVERWRITE);
             require($path);
         }
-    }
-
-    //Доработать
-    public function redirect($url = [], $param = []){
-        header("Location: ".$url);
     }
 
     public static function getController(){
