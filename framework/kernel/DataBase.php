@@ -9,7 +9,7 @@ class DataBase{
     protected $database;
 
     private $_new = true;
-    private $result;
+    private $result, $command;
 
     public function __construct($config){
         if(isset($config['connect'])) $this->connect = $config['connect'];
@@ -30,9 +30,10 @@ class DataBase{
 
     //Построение команды
     //Доработать
-    public function command($command, $params = NULL){
+    public function command($command, $params = []){
         try{
             $this->result = $this->database->query($command);
+            $this->command = $command;
         }catch(PDOException $e){
             die($e->getMessage());
         }
@@ -41,15 +42,12 @@ class DataBase{
     }
 
     //Для получения всех данных удовлетворяющих запросу
-    public function fetchAll(){
+    public function getAll(){
         return $this->result->fetchAll();
     }
 
     //Выполняет запросы типа UPDATE и INSERT
     public function execute(){
-        $this->result->query();
-
-        if($this->_new)
-            return $this->result->lastInsertId();
+        return $this->database->prepare($this->command);
     }
 }
