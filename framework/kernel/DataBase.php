@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class DataBase
+ */
 class DataBase{
     private $connect;
     private $username;
@@ -30,6 +33,11 @@ class DataBase{
 
     //Построение команды
     //Доработать
+    /**
+     * @param $command
+     * @param array $params
+     * @return $this
+     */
     public function command($command, $params = []){
         try{
             $this->result = $this->database->query($command);

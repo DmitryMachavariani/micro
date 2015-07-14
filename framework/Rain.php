@@ -1,6 +1,6 @@
 <?php
 
-class Sun{
+class Rain{
     private static $_app;
     private $components = [];
 
