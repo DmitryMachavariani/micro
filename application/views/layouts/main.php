@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html lang="<?= Rain::app()->get('app')->get('lang'); ?>">
 <head>
-    <title>Моё приложение</title>
-    <link rel="stylesheet" href="<?php echo Rain::app()->baseUrl(); ?>/css/material.css">
-    <link rel="stylesheet" href="<?php echo Rain::app()->baseUrl(); ?>/css/style.css">
+    <title><?= Rain::app()->get('app')->get('name'); ?></title>
+    <link rel="stylesheet" href="<?= Rain::app()->baseUrl(); ?>/css/material.css">
+    <link rel="stylesheet" href="<?= Rain::app()->baseUrl(); ?>/css/style.css">
     <script src="<?= Rain::app()->baseUrl(); ?>/js/material.js"></script>
 
-    <meta charset="utf-8">
+    <meta charset="<?= Rain::app()->get('app')->get('charset'); ?>">
 </head>
 <body>
 
@@ -13,13 +14,13 @@
     <header class="mdl-layout__header mdl-layout__header--waterfall">
         <!-- Top row, always visible -->
         <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">Моё приложение</span>
+            <span class="mdl-layout-title"><?= Rain::app()->get('app')->get('name'); ?></span>
 
             <div class="mdl-layout__header-row">
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="waterfall-demo-header-nav mdl-navigation">
-                    <a class="mdl-navigation__link" href="<?=Rain::app()->get('router')->createUrl('cron/index'); ?>">Главная</a>
+                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site'); ?>">Главная</a>
                     <a class="mdl-navigation__link" href="">О проекте</a>
                     <a class="mdl-navigation__link" href="">Войти</a>
                     <a class="mdl-navigation__link" href="">Конакты</a>
@@ -30,7 +31,7 @@
     </header>
     <main class="mdl-layout__content">
         <div class="page-content">
-            <?php echo $content; ?>
+            <?= $content; ?>
         </div>
     </main>
 </div>

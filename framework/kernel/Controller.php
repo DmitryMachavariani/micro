@@ -1,7 +1,7 @@
 <?php
 
 class Controller{
-    public static $default = 'test/index';
+    protected static $default = 'site/index';
 
     public function run(){
         $controller = self::getController();

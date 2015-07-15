@@ -5,19 +5,29 @@ class Router {
         $tmp_data = explode('/', $to);
         $url = NULL;
 
+        if($tmp_data[1] == null){
+            $tmp_data[1] = Controller::getAction();
+        }
+
         if(count($param) == 0){
             $url = url."index.php?d=".$tmp_data[0]."/".$tmp_data[1];
         }else {
-            $to_query = array("d" => $tmp_data);
-//            $url = http_build_query($to_query);
+            $url = url."index.php?d=".$tmp_data[0]."/".$tmp_data[1];
 
-//            echo $url;
+            foreach ($param as $key => $value) {
+                $url .= "&".$key."=".$value;
+            }
+
         }
 
         return $url;
     }
 
-    public function redirect($url = [], $param = []){
+
+    /**
+     * Исправить
+     */
+    public function redirect($url, $param = []){
         header("Location: ".$url);
     }
 }
