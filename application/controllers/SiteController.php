@@ -11,7 +11,15 @@ class SiteController extends Controller {
         $this->render('index', ['data' => $data]);
     }
 
-    public function hello() {
-        $this->render('hello', array('id' => 1));
+    public function about() {
+        $this->render('about');
+    }
+
+    public function login(){
+        $this->render('login');
+    }
+
+    public function contact(){
+        $this->render('contact');
     }
 }

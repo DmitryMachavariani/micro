@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header mdl-layout__header--waterfall">
         <!-- Top row, always visible -->
         <div class="mdl-layout__header-row">
@@ -20,10 +20,10 @@
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="waterfall-demo-header-nav mdl-navigation">
-                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site'); ?>">Главная</a>
-                    <a class="mdl-navigation__link" href="">О проекте</a>
-                    <a class="mdl-navigation__link" href="">Войти</a>
-                    <a class="mdl-navigation__link" href="">Конакты</a>
+                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site/index'); ?>">Главная</a>
+                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site/about'); ?>">О проекте</a>
+                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site/login'); ?>">Войти</a>
+                    <a class="mdl-navigation__link" href="<?= Rain::app()->get('router')->createUrl('site/contact'); ?>">Конакты</a>
                 </nav>
             </div>
         </div>
