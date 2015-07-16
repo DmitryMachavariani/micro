@@ -1,4 +1,4 @@
-<h3>Добро пожаловать в <?= Rain::app()->get('app')->get('name'); ?></h3>
+<h3>Добро пожаловать в <?= Rain::app()->app->get('name'); ?></h3>
 
 На данный момент работает файл: <span class="color"><?= __FILE__; ?></span><br/><br/>
 

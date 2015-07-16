@@ -28,7 +28,7 @@ class Rain {
         $this->loadClass("Controller", "/kernel/")->run();
     }
 
-    public function get($name) {
+    public function __get($name) {
         if (array_key_exists($name, $this->components)) {
             $path = framework . '/kernel/' . $this->components[$name]['class'] . '.php';
 
@@ -65,6 +65,10 @@ class Rain {
             return new $name($params);
         else
             return new $name;
+    }
+
+    public function end() {
+        return exit();
     }
 
     public static function app() {

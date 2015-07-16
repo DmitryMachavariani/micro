@@ -11,6 +11,10 @@ $config = [
         'router' => [
             'class' => 'Router'
         ],
+        'session' => [
+            'class' => 'Session',
+            'autoStart' => true
+        ],
         'app' => [
             'class' => 'Config',
             'name' => 'Моё приложение',

@@ -1,4 +1,7 @@
-<form action="<?= Rain::app()->get('router')->createUrl('site/login'); ?>" method="post">
+<?= Rain::app()->session->set('login', 'angus123'); ?>
+<?= Rain::app()->session->get('login'); ?>
+
+<form action="<?= Rain::app()->router->createUrl('site/login'); ?>" method="post">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
         <input class="mdl-textfield__input" type="text" required/>
         <label class="mdl-textfield__label" for="sample1">Логин</label>
