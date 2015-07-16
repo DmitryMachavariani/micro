@@ -36,8 +36,6 @@ class SiteController extends Controller {
     }
 
     public function logout(){
-        if(Rain::app()->user->logout()){
-            echo 'Good';
-        }
+        Rain::app()->user->logout();
     }
 }

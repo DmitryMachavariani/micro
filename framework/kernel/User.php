@@ -14,10 +14,16 @@ class User extends Session {
         }
     }
 
+    /**
+     * @return bool
+     */
     private function getGuest() {
-        return parent::exist('rain_auth');
+        return !parent::exist('rain_auth');
     }
 
+    /**
+     * @return mixed
+     */
     private function getName() {
         return parent::get('rain_u');
     }
@@ -48,6 +54,14 @@ class User extends Session {
         parent::destroy('rain_p');
 
         return true;
+    }
+
+    public function generatePassword($password, $type = PASSWORD_BCRYPT){
+        return password_hash($password, $type);
+    }
+
+    public function verifyPassword($password, $hash){
+        return password_verify($password, $hash);
     }
 
 }
