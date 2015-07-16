@@ -9,7 +9,6 @@ class Session {
      */
 
     private $_id;
-    private $_message;
 
     /**
      * @param $param
@@ -19,6 +18,10 @@ class Session {
             session_start();
             $this->_id = session_id();
         }
+    }
+
+    public function exist($name){
+        return isset($_SESSION[$name]);
     }
 
     /**
@@ -33,9 +36,11 @@ class Session {
      *
      * @return mixed
      */
-    public function get($name) {
-        if (isset($_SESSION[$name]) && $_SESSION[$name] != null) {
+    protected function get($name) {
+        if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
+        }else{
+            return false;
         }
     }
 
@@ -43,14 +48,22 @@ class Session {
      * @param $name
      * @param $value
      */
-    public function set($name, $value) {
+    protected function set($name, $value) {
         $_SESSION[$name] = $value;
     }
 
+
+    protected function destroy($name) {
+        if (isset($_SESSION[$name])) {
+            unset($_SESSION[$name]);
+        }
+    }
+
     public function hasMessage($name) {
-        if ($this->get($name))
+        if ($this->get($name)) {
+
             return true;
-        else
+        }else
             return false;
     }
 
@@ -59,10 +72,15 @@ class Session {
      * @param $value
      */
     public function setMessage($name, $value) {
-
+        $this->set($name, $value);
     }
 
-    public function getMessage($name, $value) {
+    public function getMessage($name) {
+        $result = $this->get($name);
+        $this->destroy($name);
 
+        return $result;
     }
+
+
 }

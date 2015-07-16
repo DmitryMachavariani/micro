@@ -48,14 +48,14 @@ class Controller {
 
     public static function getAction() {
         $data = isset($_GET['d']) ? explode("/", $_GET['d']) : explode("/", self::$default);
-        if (!file_exists(app . "/views/" . self::getController() . "/" . $data[1] . ".php")) {
-            exit("Not found file " . app . "/views/" . self::getController() . "/" . $data[1] . ".php" . "");
-        } else {
+//        if (!file_exists(app . "/views/" . self::getController() . "/" . $data[1] . ".php")) {
+//            exit("Not found file " . app . "/views/" . self::getController() . "/" . $data[1] . ".php" . "");
+//        } else {
 //            if (!method_exists('Controller', $data[1])) {
 //                exit("Not found action " . $data[1] . "() in controller " . ucfirst($data[0]) . "Controller.php");
 //            } else {
                 return strtolower($data[1]);
 //            }
-        }
+//        }
     }
 }

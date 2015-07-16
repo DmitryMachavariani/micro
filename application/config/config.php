@@ -15,6 +15,9 @@ $config = [
             'class' => 'Session',
             'autoStart' => true
         ],
+        'user' => [
+            'class' => 'User'
+        ],
         'app' => [
             'class' => 'Config',
             'name' => 'Моё приложение',

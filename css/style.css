@@ -7,3 +7,24 @@
 	background-color : lightgreen;
 	padding          : 1px 3px 1px 3px;
 }
+
+.message-success {
+	width            : 90%;
+	background-color : rgba(101, 216, 109, 1);
+	border           : 2px solid limegreen;
+	padding          : 5px 10px 5px 10px;
+}
+
+.message-error {
+	width            : 90%;
+	background-color : lightcoral;
+	border           : 2px solid darkred;
+	padding          : 5px 10px 5px 10px;
+}
+
+.message-notice {
+	width            : 90%;
+	background-color : khaki;
+	border           : 2px solid sandybrown;
+	padding          : 5px 10px 5px 10px;
+}
