@@ -12,6 +12,8 @@ class Rain {
         //Подключаем настройки приложения
         require($config);
 
+        $this->loadClass("Component");
+
         //Инициализируем все компоненты
         if (isset($config['components'])) {
             foreach ($config['components'] as $key => $value) {
@@ -25,6 +27,7 @@ class Rain {
         }
 
         //Подгружаем главный класс контроллера
+
         $this->loadClass("Controller", "/kernel/")->run();
     }
 
@@ -50,7 +53,7 @@ class Rain {
         if (self::$_app === null || $app === null) self::$_app = $app;
     }
 
-    public function loadClass($name, $dir = 'helpers', $params = []) {
+    public function loadClass($name, $dir = '', $params = []) {
         if (is_array($name)) {
             foreach ($name as $key => $value) {
                 $path = framework . $dir . "/" . $value . ".php";

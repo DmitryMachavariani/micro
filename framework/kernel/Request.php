@@ -1,6 +1,6 @@
 <?php
 
-class Request {
+class Request extends Component{
     public function getPost($key) {
         if (isset($_POST[$key])) {
             return $_POST[$key];

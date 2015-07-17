@@ -37,5 +37,6 @@ class SiteController extends Controller {
 
     public function logout(){
         Rain::app()->user->logout();
+        Rain::app()->router->redirect('site/index', ['id'=>1]);
     }
 }

@@ -3,7 +3,7 @@
 /**
  * Class Session
  */
-class Session {
+class Session extends Component {
     /**
      * Session constructor.
      */
@@ -15,13 +15,17 @@ class Session {
      */
     public function __construct($param) {
         if (isset($param['autoStart']) && $param['autoStart'] == true) {
-            session_start();
+            @session_start();
             $this->_id = session_id();
         }
     }
 
-    public function exist($name){
+    public function exist($name) {
         return isset($_SESSION[$name]);
+    }
+
+    public function count(){
+        return count($_SESSION);
     }
 
     /**
@@ -39,7 +43,7 @@ class Session {
     protected function get($name) {
         if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
-        }else{
+        } else {
             return false;
         }
     }
@@ -63,7 +67,7 @@ class Session {
         if ($this->get($name)) {
 
             return true;
-        }else
+        } else
             return false;
     }
 

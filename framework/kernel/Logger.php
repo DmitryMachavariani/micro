@@ -1,5 +1,5 @@
 <?php
 
-class Logger {
+class Logger extends Component {
 
 }

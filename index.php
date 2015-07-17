@@ -1,4 +1,8 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 define("VERSION", "0.01");
 
 define("BASEPATH", __DIR__);

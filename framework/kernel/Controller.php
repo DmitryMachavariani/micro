@@ -1,6 +1,6 @@
 <?php
 
-class Controller {
+class Controller extends Component{
     protected static $default = 'site/index';
 
     public function run() {

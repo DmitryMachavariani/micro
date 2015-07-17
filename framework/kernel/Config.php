@@ -1,6 +1,6 @@
 <?php
 
-class Config {
+class Config extends Component {
 
     private $config;
 

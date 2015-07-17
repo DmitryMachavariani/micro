@@ -1,6 +1,10 @@
 <?php
 $config = [
     'components' => [
+        'session' => [
+            'class' => 'Session',
+            'autoStart' => true
+        ],
         'db' => [
             'class' => 'DataBase',
             'connect' => 'mysql:host=localhost;dbname=game;',
@@ -10,10 +14,6 @@ $config = [
         ],
         'router' => [
             'class' => 'Router'
-        ],
-        'session' => [
-            'class' => 'Session',
-            'autoStart' => true
         ],
         'user' => [
             'class' => 'User'
