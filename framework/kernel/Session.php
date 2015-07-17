@@ -20,10 +20,18 @@ class Session extends Component {
         }
     }
 
+    /**
+     * @param $name
+     *
+     * @return bool
+     */
     public function exist($name) {
         return isset($_SESSION[$name]);
     }
 
+    /**
+     * @return int
+     */
     public function count(){
         return count($_SESSION);
     }
@@ -57,15 +65,26 @@ class Session extends Component {
     }
 
 
-    protected function destroy($name) {
+    /**
+     * @param $name
+     */
+    protected function delete($name) {
         if (isset($_SESSION[$name])) {
             unset($_SESSION[$name]);
         }
     }
 
+    public function destroy(){
+        @session_destroy();
+    }
+
+    /**
+     * @param $name
+     *
+     * @return bool
+     */
     public function hasMessage($name) {
         if ($this->get($name)) {
-
             return true;
         } else
             return false;
@@ -79,9 +98,14 @@ class Session extends Component {
         $this->set($name, $value);
     }
 
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
     public function getMessage($name) {
         $result = $this->get($name);
-        $this->destroy($name);
+        $this->delete($name);
 
         return $result;
     }
