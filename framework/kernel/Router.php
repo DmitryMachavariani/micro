@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Router
+ */
 class Router extends Component {
     /**
      * @param $to
@@ -32,16 +35,29 @@ class Router extends Component {
 
     /**
      * @param $url
-     * @param array $param
-     *
-     * @return null|string
+     * @param null $param
+     * @param int $status
+     * @param bool|true $replace
      */
-    public function redirect($url, $param = null) {
-        if (substr_count($url, '/') === 1 && (is_array($param) && count($param) > 0)) {
-            $url = $this->createUrl($url, $param);
-            header('Location: ' . $url);
+    public function redirect($url, $param = null, $status = 302, $replace = true) {
+        if (substr_count($url, '/') === 1) {
+            if (is_array($param) && count($param) > 0) {
+                $url = $this->createUrl($url, $param);
+            } else {
+                $url = $this->createUrl($url);
+            }
+            header('Location:' . $url, $replace, $status);
         } else {
-//            Генерируем другой URL
+            header('Location:' . $url, $replace, $status);
         }
+    }
+
+    public function refresh() {
+        $param = $_GET;
+        unset($param['d']);
+
+        $to = Controller::getController() . '/' . Controller::getAction();
+
+        $this->redirect($to, $param);
     }
 }
