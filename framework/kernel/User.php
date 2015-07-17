@@ -48,10 +48,10 @@ class User extends Session {
      * @return bool
      */
     public function logout() {
-        parent::destroy('rain_auth');
+        parent::delete('rain_auth');
 
-        parent::destroy('rain_u');
-        parent::destroy('rain_p');
+        parent::delete('rain_u');
+        parent::delete('rain_p');
 
         return true;
     }
