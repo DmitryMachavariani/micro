@@ -56,11 +56,13 @@ class User extends Session {
         return true;
     }
 
-    public function generatePassword($password, $type = PASSWORD_BCRYPT){
+    //Генерирует надежный хеш для вашего пароля
+    public function passwordHash($password, $type = PASSWORD_BCRYPT) {
         return password_hash($password, $type);
     }
 
-    public function verifyPassword($password, $hash){
+    //Проверяет пароль на соответствие хешу
+    public function verifyPassword($password, $hash) {
         return password_verify($password, $hash);
     }
 
