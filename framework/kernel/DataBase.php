@@ -11,7 +11,6 @@ class DataBase extends Component {
 
     protected $database;
 
-    private $_new = true;
     private $result, $command;
 
     public function __construct($config) {
@@ -51,29 +50,37 @@ class DataBase extends Component {
     }
 
     //Для получения всех данных удовлетворяющих запросу. Выбирает все записи
+    //$table_name - название таблицы
     //$from - LIMIT от
     //$to - LIMIT до
     public function get($table_name = null, $from = null, $to = null) {
-        $this->result = $this->database->query("SELECT * FROM " . $table_name . " LIMIT " . $from . ", " . $to)->fetchAll();
-
+        try {
+            $this->result = $this->database->query("SELECT * FROM " . $table_name . " LIMIT " . $from . ", " . $to)->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
         return $this->result;
     }
 
-    public function getResult(){
-        $this->result = $this->database->query($this->command)->fetchAll();
-
-//        echo $this->command;
+    //Если команда подготовлена конструктором
+    //То просто выполняем
+    public function getResult() {
+        try {
+            $this->result = $this->database->query($this->command)->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
         return $this->result;
     }
 
     //Для получения всех данных удовлетворяющих запросу. Выбирает одну запись
+    //$table_name - название таблицы
     public function getOne($table_name) {
-        if($this->command != null){
-            $this->result = $this->database->query($this->command)->fetch();
-        }else {
+        try {
             $this->result = $this->database->query("SELECT * FROM " . $table_name . " LIMIT 1")->fetch();
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-
         return $this->result;
     }
 
@@ -103,8 +110,8 @@ class DataBase extends Component {
             $this->command .= ' WHERE ';
             $num = 0;
             foreach ($where as $key => $value) {
-                $this->command .= $key . '="' . $value.'"';
-                if($num < count($where) - 1){
+                $this->command .= $key . '="' . $value . '"';
+                if ($num < count($where) - 1) {
                     $this->command .= ' AND ';
                 }
                 $num++;
