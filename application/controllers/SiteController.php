@@ -1,7 +1,6 @@
 <?php
 
 class SiteController extends Controller {
-
     public function index() {
 
 //        $result = Rain::app()->get("db")->command("SELECT * FROM tb_users")->getAll();
