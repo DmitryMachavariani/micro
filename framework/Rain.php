@@ -11,7 +11,13 @@ class Rain {
     public function start($config) {
         //Подключаем настройки приложения
         require($config);
+
+        //Подключаем класс компонент
         $this->loadClass("Component", "/base");
+
+        //Подгружаем главный класс контроллера
+        $path = framework . DIRECTORY_SEPARATOR . 'base/BaseController.php';
+        require_once($path);
 
         //Инициализируем все компоненты
         if (isset($config['components'])) {
@@ -25,10 +31,6 @@ class Rain {
             }
         }
 
-        //Подгружаем главный класс контроллера
-        $path = framework . DIRECTORY_SEPARATOR . 'base/BaseController.php';
-        require_once($path);
-
         $this->loadClass("Controller")->run();
     }
 
@@ -39,7 +41,7 @@ class Rain {
     }
 
     public function baseUrl() {
-        $url = '/' . basename(dirname(__DIR__));
+        $url = rtrim(dirname($_SERVER['PHP_SELF']), '/');
 
         return $url;
     }

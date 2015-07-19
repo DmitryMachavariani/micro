@@ -4,6 +4,15 @@
  * Class Router
  */
 class Router extends Component {
+    private $_data;
+
+    /**
+     * Router constructor.
+     */
+    public function __construct() {
+
+    }
+
     /**
      * @param $to
      * @param array $param
@@ -15,14 +24,13 @@ class Router extends Component {
         $url = NULL;
 
         if ($tmp_data[1] == null) {
-            $tmp_data[1] = Controller::getAction();
+            $class = new Controller();
+            $tmp_data[1] = $class->getAction();
         }
 
-        if (count($param) == 0) {
-            $url = url . "index.php?d=" . $tmp_data[0] . "/" . $tmp_data[1];
-        } else {
-            $url = url . "index.php?d=" . $tmp_data[0] . "/" . $tmp_data[1];
+        $url = url . "index.php?d=" . $tmp_data[0] . "/" . $tmp_data[1];
 
+        if (count($param) > 0) {
             foreach ($param as $key => $value) {
                 $url .= "&" . $key . "=" . $value;
             }
@@ -56,7 +64,8 @@ class Router extends Component {
         $param = $_GET;
         unset($param['d']);
 
-        $to = Controller::getController() . '/' . Controller::getAction();
+        $class = new Controller();
+        $to = $class->getController() . '/' . $class->getAction();
 
         $this->redirect($to, $param);
     }
