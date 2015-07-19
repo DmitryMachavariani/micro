@@ -11,15 +11,14 @@ class Rain {
     public function start($config) {
         //Подключаем настройки приложения
         require($config);
-
-        $this->loadClass("Component");
+        $this->loadClass("Component", "/base");
 
         //Инициализируем все компоненты
         if (isset($config['components'])) {
             foreach ($config['components'] as $key => $value) {
                 if (isset($value['class'])) {
-                    $this->loadClass($value['class'], "/kernel/", $value);
-                    $this->components[$key] = $value;
+                    $this->loadClass($value['class'], '', $value);
+                    $this->components[$key] = new $value['class']($value);
                 } else {
                     die("Class param not found");
                 }
@@ -27,19 +26,15 @@ class Rain {
         }
 
         //Подгружаем главный класс контроллера
+        $path = framework . DIRECTORY_SEPARATOR . 'base/BaseController.php';
+        require_once($path);
 
-        $this->loadClass("Controller", "/kernel/")->run();
+        $this->loadClass("Controller")->run();
     }
 
     public function __get($name) {
         if (array_key_exists($name, $this->components)) {
-            $path = framework . '/kernel/' . $this->components[$name]['class'] . '.php';
-
-            if (file_exists($path)) {
-                require_once($path);
-                $classname = $this->components[$name]['class'];
-                return new $classname($this->components[$name]);
-            }
+            return $this->components[$name];
         }
     }
 
@@ -54,23 +49,32 @@ class Rain {
     }
 
     public function loadClass($name, $dir = '', $params = []) {
-        if (is_array($name)) {
-            foreach ($name as $key => $value) {
-                $path = framework . $dir . "/" . $value . ".php";
-                if (file_exists($path)) require($path);
-            }
+        if ($dir != '') {
+            $path = app . $dir . DIRECTORY_SEPARATOR . $name . ".php";
         } else {
-            $path = framework . $dir . "/" . $name . ".php";
-            if (file_exists($path)) require($path);
+            $path = app . '/components' . DIRECTORY_SEPARATOR . $name . ".php";
+        }
+        if (file_exists($path)) {
+            require($path);
+        } else {
+            if ($dir != '') {
+                $path = framework . $dir . DIRECTORY_SEPARATOR . $name . ".php";
+            } else {
+                $path = framework . '/kernel' . DIRECTORY_SEPARATOR . $name . ".php";
+            }
+
+            if (file_exists($path)) {
+                require($path);
+            }
         }
 
-        if (count($params) > 0 && is_array($params))
+        if (is_array($params) && count($params) > 0)
             return new $name($params);
         else
             return new $name;
     }
 
-    public function end() {
+    public static function end() {
         return exit();
     }
 
