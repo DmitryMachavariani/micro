@@ -1,17 +1,7 @@
 <?php
 
-class Controller extends Component{
-    protected static $default = 'site/qwerty';
+class Controller extends BaseController{
 
-    public function run() {
-        $controller = self::getController();
-        $action = self::getAction();
-
-        echo $action;
-
-//        require(app . "/controllers/" . ucfirst($controller) . "Controller.php");
-//        $name = ucfirst($controller) . "Controller";
-//        $controller = new $name;
-//        $controller->$action();
-    }
+    //Перепределение контроллера и действие по умолчанию
+    public $default = 'site/login';
 }
