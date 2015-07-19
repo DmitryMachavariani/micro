@@ -1,5 +1,7 @@
 <?php if (Rain::app()->session->hasMessage('success')): ?>
     <div class="message-success"><b><?= Rain::app()->session->getMessage('success'); ?></b></div>
+<?php elseif (Rain::app()->session->hasMessage('error')): ?>
+    <div class="message-error"><b><?= Rain::app()->session->getMessage('error'); ?></b></div>
 <?php endif; ?>
 
 <form action="<?= Rain::app()->router->createUrl('site/login'); ?>" method="post">
