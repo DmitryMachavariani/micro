@@ -103,16 +103,22 @@ class DataBase extends Component {
 
     // Добавляетконструкцию типо WHERE
     // если $where массив, то перебирает в цикле
-    public function where($where = null) {
+    public function where($where = null, $type = 'AND') {
         if (is_string($where) && $where != null) {
             $this->command .= ' WHERE ' . $where;
         } else if (is_array($where) && count($where) > 0) {
             $this->command .= ' WHERE ';
             $num = 0;
             foreach ($where as $key => $value) {
-                $this->command .= $key . '="' . $value . '"';
+                $this->command .= '`' . $key . '` = ';
+                if (is_int($value)) {
+                    $this->command .= $value;
+                } else {
+                    $this->command .= '"' . $value . '"';
+                }
+
                 if ($num < count($where) - 1) {
-                    $this->command .= ' AND ';
+                    $this->command .= ' ' . $type . ' ';
                 }
                 $num++;
             }
