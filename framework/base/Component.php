@@ -5,7 +5,9 @@ class Component {
     // Список классов для автозагрузки
     private $_class = [
         'BaseController' => '/base/BaseController.php',
-        'BaseValidator' => '/base/BaseValidator.php'
+        'BaseValidator' => '/base/BaseValidator.php',
+        'IntValidator' => '/validator/IntValidator.php',
+        'RangeValidator' => '/validator/RangeValidator.php',
     ];
 
     // В конструкторе вызываем метод автозагрузки
@@ -13,7 +15,7 @@ class Component {
         $this->autoload();
     }
 
-    public function autoload() {
+    private function autoload() {
         foreach ($this->_class as $key => $value) {
             $this->createComponent($key);
         }
