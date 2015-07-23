@@ -86,7 +86,11 @@ class DataBase extends Component {
 
     //Выполняет запросы типа UPDATE и INSERT
     public function execute() {
-        return $this->database->prepare($this->command);
+        try {
+            return $this->database->exec($this->command);
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
     }
 
     //Добавляет конструкцию типо SELECT *
@@ -127,6 +131,39 @@ class DataBase extends Component {
         return $this;
 
     }
+
+    // Запрос типа UPDATE
+    // в качестве аргумента передаётся название таблицы
+    public function update($table) {
+        if (is_string($table)) {
+            $this->command = 'UPDATE ' . $table;
+        }
+
+        return $this;
+    }
+
+    // Устанвливаем параметры которые нужно передать
+    // Добавлаяет блок SET
+    public function set($param = []) {
+        $this->command .= ' SET ';
+        $num = 0;
+
+        foreach ($param as $key => $value) {
+            if (is_int($value))
+                $this->command .= '`' . $key . "`=" . $value . "";
+            else
+                $this->command .= '`' . $key . '`="' . $value . '"';
+
+            if(count($param) - 1 > $num){
+                $this->command .= ', ';
+            }
+
+            $num++;
+        }
+
+        return $this;
+    }
+
 
     // Выводит запрос как текст
     public function asText() {
