@@ -15,10 +15,6 @@ class Rain {
         //Подключаем класс компонент
         $this->loadClass("Component", "/base");
 
-        //Подгружаем главный класс контроллера
-//        $path = framework . DIRECTORY_SEPARATOR . 'base/BaseController.php';
-//        require_once($path);
-
         //Инициализируем все компоненты
         if (isset($config['components'])) {
             foreach ($config['components'] as $key => $value) {
