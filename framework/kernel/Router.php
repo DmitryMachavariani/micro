@@ -24,8 +24,7 @@ class Router extends Component {
         $url = NULL;
 
         if ($tmp_data[1] == null) {
-            $class = new Controller();
-            $tmp_data[1] = $class->getAction();
+            $tmp_data[1] = Controller::getAction();
         }
 
         $url = url . "index.php?d=" . $tmp_data[0] . "/" . $tmp_data[1];
@@ -64,8 +63,7 @@ class Router extends Component {
         $param = $_GET;
         unset($param['d']);
 
-        $class = new Controller();
-        $to = $class->getController() . '/' . $class->getAction();
+        $to = Controller::getController() . '/' . Controller::getAction();
 
         $this->redirect($to, $param);
     }
