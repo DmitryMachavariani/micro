@@ -4,15 +4,6 @@
  * Class Router
  */
 class Router extends Component {
-    private $_data;
-
-    /**
-     * Router constructor.
-     */
-    public function __construct() {
-
-    }
-
     /**
      * @param $to
      * @param array $param
