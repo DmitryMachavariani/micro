@@ -1,5 +1,5 @@
 <?php
 
 class Controller extends BaseController {
-    public $default = 'site/index';
+    public static $default = 'site/index';
 }
