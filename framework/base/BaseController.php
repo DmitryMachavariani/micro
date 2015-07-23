@@ -1,7 +1,7 @@
 <?php
 
 abstract class BaseController extends Component {
-    public $default = 'site/index';
+    protected static $default_base = 'site/index';
 
     public function run() {
         $controller = $this->getController();
@@ -35,8 +35,8 @@ abstract class BaseController extends Component {
         }
     }
 
-    public function getController() {
-        $data = isset($_GET['d']) ? explode("/", $_GET['d']) : explode("/", $this->default);
+    public static function getController() {
+        $data = isset($_GET['d']) ? explode("/", $_GET['d']) : explode("/", self::$default_base);
         if (!file_exists(app . "/controllers/" . ucfirst($data[0]) . "Controller.php")) {
             exit("Not found file " . app . "/controllers/" . ucfirst($data[0]) . "Controller.php");
         } else {
@@ -44,8 +44,8 @@ abstract class BaseController extends Component {
         }
     }
 
-    public function getAction() {
-        $data = isset($_GET['d']) ? explode("/", $_GET['d']) : explode("/", $this->default);
+    public static function getAction() {
+        $data = isset($_GET['d']) ? explode("/", $_GET['d']) : explode("/", self::$default_base);
         return strtolower($data[1]);
     }
 
