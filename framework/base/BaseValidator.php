@@ -1,5 +1,4 @@
 <?php
 
-abstract class BaseValidator extends Component{
-
+abstract class BaseValidator extends Component {
 }
