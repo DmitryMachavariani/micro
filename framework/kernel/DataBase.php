@@ -95,7 +95,7 @@ class DataBase extends Component {
 
     //Добавляет конструкцию типо SELECT *
     public function select($select = '*') {
-        $this->command = 'SELECT * ';
+        $this->command = 'SELECT '.$select;
         return $this;
     }
 
