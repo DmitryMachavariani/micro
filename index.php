@@ -3,7 +3,7 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-define("VERSION", "0.01");
+define("VERSION", "0.02");
 
 define("BASEPATH", __DIR__);
 define("FILEPATH", __FILE__);
