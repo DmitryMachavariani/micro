@@ -33,6 +33,10 @@ class Rain {
     public function __get($name) {
         if (array_key_exists($name, $this->components)) {
             return $this->components[$name];
+        } else {
+            if (class_exists($name)) {
+                return new $name;
+            }
         }
     }
 
