@@ -30,7 +30,7 @@ class FormHelper {
         return "</form>";
     }
 
-    public static function input($name, $value, $param = null) {
+    public static function input($name, $value = null, $param = null) {
         $input = '<input name="rain-form-' . self::$_id . '[' . $name . ']" value="' . $value . '"';
 
         if ($param !== null && is_array($param)) {
@@ -48,12 +48,29 @@ class FormHelper {
         return $input;
     }
 
-    public static function submit($value, $param = null) {
+    public static function submit($value = '', $param = null) {
         $param['type'] = 'submit';
+        if ($value === '') {
+            $value = 'Submit';
+        }
         return self::input('', $value, $param);
     }
 
     public static function load($name) {
         return isset($_POST[$name]) ? $_POST[$name] : null;
+    }
+
+    public static function label($name, $param = null) {
+        $label = "<label";
+
+        if ($param !== null && is_array($param)) {
+            foreach ($param as $key => $value) {
+                $label .= ' ' . $key . '="' . $value . '"';
+            }
+        }
+
+        $label .= ">" . $name . "</label>";
+
+        return $label;
     }
 }
