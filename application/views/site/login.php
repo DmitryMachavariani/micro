@@ -4,17 +4,18 @@
     <div class="message-error"><b><?= Rain::app()->session->getMessage('error'); ?></b></div>
 <?php endif; ?>
 
-<form action="<?= Rain::app()->router->createUrl('site/login'); ?>" method="post">
+<?= FormHelper::begin(); ?>
+
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <input class="mdl-textfield__input" name="username" type="text" required/>
-        <label class="mdl-textfield__label" for="sample1">Логин</label>
+        <?= FormHelper::input('username', '', ['class' => 'mdl-textfield__input', 'required' => true]); ?>
+        <?= FormHelper::label('Логин', ['class' => 'mdl-textfield__label']); ?>
     </div>
 
     <br/>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-        <input class="mdl-textfield__input" name="password" type="password" required/>
-        <label class="mdl-textfield__label" for="sample1">Пароль</label>
+        <?= FormHelper::input('password', '', ['type' => 'password', 'class' => 'mdl-textfield__input', 'required' => true]); ?>
+        <?= FormHelper::label('Пароль', ['class' => 'mdl-textfield__label']); ?>
     </div>
 
     <br/>
@@ -23,5 +24,6 @@
 
     <br/><br/>
 
-    <input type="submit" class="mdl-button mdl-button--raised" name="send" value="Войти">
-</form>
+<?= FormHelper::submit('', ['class' => 'mdl-button mdl-button--raised']); ?>
+
+<?= FormHelper::end(); ?>
