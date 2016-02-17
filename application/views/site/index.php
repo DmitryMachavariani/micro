@@ -8,5 +8,7 @@
 <br/>
 
 <div class="main_image">
-    <a href="http://github.com/DmitryMachavariani/micro" target="_blank"><img src="http://mentormate.com/wp-content/uploads/2014/06/GitHub.jpg" alt="image"></a>
+    <a href="http://github.com/DmitryMachavariani/micro" target="_blank">
+        <?= FormHelper::img("http://mentormate.com/wp-content/uploads/2014/06/GitHub.jpg", '', ['class' => 'img']) ?>
+    </a>
 </div>
